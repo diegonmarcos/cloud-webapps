@@ -8,3 +8,5 @@ jobs:
       - uses: actions/setup-node@v4
         with: { node-version: 20 }
       - run: bash scripts/test.sh
+      # drift guard: the vendored service data must equal cloud-u-containers (the sync workflow repairs drift)
+      - run: node scripts/sync-fallback-services.mjs --check
